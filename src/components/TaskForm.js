@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react';
 import { TaskListContext } from '../contexts/TaskListContext';
 
 const TaskForm = () => {
-  const { addTask } = useContext(TaskListContext);
+  const { addTask, clearList } = useContext(TaskListContext);
 
   const [title, setTitle] = useState('');
 
@@ -12,6 +12,8 @@ const TaskForm = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    addTask(title);
+    setTitle('');
   };
 
   return (
@@ -20,6 +22,7 @@ const TaskForm = () => {
         type="text"
         className="task-input"
         placeholder="Add Task..."
+        value={title}
         onChange={handleChange}
         required
       />
@@ -27,7 +30,9 @@ const TaskForm = () => {
         <button type="submit" className="btn add-task-btn">
           Add Task
         </button>
-        <button className="btn clear-btn">Clear</button>
+        <button className="btn clear-btn" onClick={clearList}>
+          Clear
+        </button>
       </div>
     </form>
   );
