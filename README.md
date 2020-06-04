@@ -6,6 +6,8 @@ React App with Context API and React Hooks.
   <img src="./preview.png" />
 </p>
 
+**Tutorial:** https://www.youtube.com/watch?v=fqup-BL3VjI&list=WL
+
 ## Quick Start
 
 First of all, install the dependencies to run this app.
