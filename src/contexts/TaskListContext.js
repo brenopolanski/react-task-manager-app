@@ -1,16 +1,18 @@
-import React, { createContext, useState } from 'react';
+import React, { createContext, useEffect, useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 
 export const TaskListContext = createContext();
 
 const TaskListContextProvider = (props) => {
-  const [tasks, setTasks] = useState([
-    { id: 1, title: 'Read the book' },
-    { id: 2, title: 'Wash the car' },
-    { id: 3, title: 'Write some code' },
-  ]);
+  const initialState = JSON.parse(localStorage.getItem('tasks')) || [];
+
+  const [tasks, setTasks] = useState(initialState);
 
   const [editItem, setEditItem] = useState(null);
+
+  useEffect(() => {
+    localStorage.setItem('tasks', JSON.stringify(tasks));
+  }, [tasks]);
 
   const addTask = (title) => {
     setTasks([...tasks, { id: uuidv4(), title }]);
